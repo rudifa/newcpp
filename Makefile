@@ -21,3 +21,7 @@ run: $(TARGET_PATH)
 
 clean:
 	rm -rf $(BUILD_DIR)
+
+compile_commands: $(BUILD_DIR)
+	cd $(BUILD_DIR) && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+	ln -sf $(BUILD_DIR)/compile_commands.json .
