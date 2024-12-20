@@ -1,3 +1,4 @@
+SHELL=/bin/bash
 
 # Detect the operating system
 UNAME_S := $(shell uname -s)
