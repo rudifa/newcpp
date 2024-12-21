@@ -33,7 +33,7 @@ run: $(TARGET_PATH)
 	popd > /dev/null
 
 clean:
-	rm -rf $(BUILD_DIR)
+	rm $(BUILD_DIR)/$(TARGET)
 
 install: $(TARGET_PATH)
 	cp $(TARGET_PATH) /usr/local/bin/$(TARGET)
