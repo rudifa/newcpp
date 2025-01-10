@@ -29,38 +29,72 @@ bool createDirectory(const std::string& projectName) {
 
 void createReadme(const std::string& projectName) {
     std::ofstream readme(projectName + "/README.md");
-    readme << "# " << projectName << "\n\n"
-           << "A C++ project.\n\n"
-           << "## Building\n\n"
-           << "```bash\n"
-           << "g++ main.cpp -o " << projectName << "\n"
-           << "```\n\n"
-           << "## Running\n\n"
-           << "```bash\n"
-           << "./" << projectName << "\n"
-           << "```\n";
+    readme << R"(# )" << projectName << R"(
+
+A C++ project.
+
+## Building
+
+```bash
+g++ main.cpp -o )" << projectName << R"(
+```
+
+## Running
+
+```bash
+./)" << projectName << R"(
+```
+)";
 }
 
 void createMainCpp(const std::string& projectName) {
     std::ofstream main(projectName + "/main.cpp");
-    main << "#include <iostream>\n\n"
-         << "int main() {\n"
-         << "    std::cout << \"Hello, World!\" << std::endl;\n"
-         << "    return 0;\n"
-         << "}\n";
+    main << R"(#include <iostream>
+
+int main() {
+    std::cout << "Hello, World!" << std::endl;
+    return 0;
+}
+)";
 }
 
 void createGitignore(const std::string& projectName) {
     std::ofstream gitignore(projectName + "/.gitignore");
-    gitignore << "# Prerequisites\n"
-              << "*.d\n\n"
-              << "# Compiled Object files\n"
-              << "*.o\n"
-              << "*.obj\n\n"
-              << "# Executables\n"
-              << "*.exe\n"
-              << "*.out\n"
-              << projectName << "\n";
+    gitignore << R"(# Prerequisites
+# Compiled object files
+*.o
+*.obj
+
+# Compiled dynamic libraries
+*.so
+*.dll
+
+# Compiled static libraries
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build directories
+/build/
+/bin/
+/obj/
+
+# IDE-specific files
+*.layout
+*.depend
+
+# Precompiled headers
+*.gch
+*.pch
+
+# macOS
+.DS_Store
+)" << projectName
+              << "\n";
 }
 
 void initGitRepo(const std::string& projectName) {
