@@ -36,13 +36,15 @@ A C++ project.
 ## Building
 
 ```bash
-g++ main.cpp -o )" << projectName << R"(
+g++ -std=c++11 main.cpp -o )"
+           << projectName << R"(
 ```
 
 ## Running
 
 ```bash
-./)" << projectName << R"(
+./)" << projectName
+           << R"(
 ```
 )";
 }
