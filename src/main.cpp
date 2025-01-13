@@ -1,11 +1,11 @@
 /*
-Copyright © 2024 Rudolf Farkas @rudifa rudi.farkas@gmail.com
+Copyright © 2025 Rudolf Farkas @rudifa rudi.farkas@gmail.com
 */
+
+#include "templates.hpp"
 
 #include <iostream>
 #include <filesystem>
-#include <fstream>
-#include <cstdlib>
 #include <string>
 
 namespace fs = std::filesystem;
@@ -27,84 +27,12 @@ bool createDirectory(const std::string& projectName) {
     }
 }
 
-void createReadme(const std::string& projectName) {
-    std::ofstream readme(projectName + "/README.md");
-    readme << R"(# )" << projectName << R"(
-
-A C++ project.
-
-## Building
-
-```bash
-g++ -std=c++11 main.cpp -o )"
-           << projectName << R"(
-```
-
-## Running
-
-```bash
-./)" << projectName
-           << R"(
-```
-)";
-}
-
-void createMainCpp(const std::string& projectName) {
-    std::ofstream main(projectName + "/main.cpp");
-    main << R"(#include <iostream>
-
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
-}
-)";
-}
-
-void createGitignore(const std::string& projectName) {
-    std::ofstream gitignore(projectName + "/.gitignore");
-    gitignore << R"(# Prerequisites
-# Compiled object files
-*.o
-*.obj
-
-# Compiled dynamic libraries
-*.so
-*.dll
-
-# Compiled static libraries
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
-
-# Build directories
-/build/
-/bin/
-/obj/
-
-# IDE-specific files
-*.layout
-*.depend
-
-# Precompiled headers
-*.gch
-*.pch
-
-# macOS
-.DS_Store
-)" << projectName
-              << "\n";
-}
-
 void initGitRepo(const std::string& projectName) {
     std::string cmd = "cd " + projectName + " && git init && git add . && git commit -m \"Initial commit\"";
     system(cmd.c_str());
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* const argv[]) {
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <project-name>\n";
         return 1;
@@ -117,12 +45,13 @@ int main(int argc, char* argv[]) {
     }
 
     try {
-        createReadme(projectName);
-        createMainCpp(projectName);
-        createGitignore(projectName);
+        Templates::createReadme(projectName);
+        Templates::createMainCpp(projectName);
+        Templates::createGitignore(projectName);
+
         initGitRepo(projectName);
 
-        std::cout << "Created new C++ project '" << projectName << "'\n";
+        std::cout << "Created new C++ project '" << projectName << "' and initialized git repository '" << projectName << "/.git'\n";
         std::cout << "cd into '" << projectName << "' to get started\n";
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << '\n';
