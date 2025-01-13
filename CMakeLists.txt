@@ -3,7 +3,7 @@ project(newcpp)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(newcpp main.cpp)
+add_executable(newcpp src/main.cpp src/templates.cpp src/filewriter.cpp)
 
 # Specify the installation directory
 # This will install to /usr/local/bin by default
