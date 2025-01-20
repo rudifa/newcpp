@@ -48,6 +48,7 @@ int main(int argc, char* const argv[]) {
         Templates::createReadme(projectName);
         Templates::createMainCpp(projectName);
         Templates::createGitignore(projectName);
+        Templates::createCMakeLists(projectName);
 
         initGitRepo(projectName);
 

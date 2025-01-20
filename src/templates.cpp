@@ -15,18 +15,26 @@ void Templates::createReadme(const std::string &projectName)
 
 A C++ project.
 
-## Building
+## Simple build
 
 ```bash
-g++ -std=c++11 main.cpp -o )"
+g++ -std=c++20 main.cpp -o )"
                                            << projectName << R"(
 ```
 
-## Running
+## Run
 
 ```bash
-./)" << projectName
-                                           << R"(
+./)" << projectName << R"(
+```
+
+## CMake build
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
 ```
 )";
 }
@@ -78,4 +86,18 @@ void Templates::createGitignore(const std::string &projectName)
 .DS_Store
 )"
                                             << projectName << "\n";
+}
+
+void Templates::createCMakeLists(const std::string &projectName)
+{
+    createFile(projectName + "/CMakeLists.txt") << R"(cmake_minimum_required(VERSION 3.15.0)
+project()" << projectName << R"()
+
+set(CMAKE_CXX_STANDARD 20)
+
+add_executable()" << projectName << R"( main.cpp)
+
+# Specify the installation directory
+install(TARGETS )" << projectName << R"( DESTINATION bin)
+)";
 }
