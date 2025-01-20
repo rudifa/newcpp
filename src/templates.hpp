@@ -13,6 +13,8 @@ public:
     static void createReadme(const std::string &projectName);
     static void createMainCpp(const std::string &projectName);
     static void createGitignore(const std::string &projectName);
+    static void createCMakeLists(const std::string &projectName);
+
 
 private:
     static FileWriter createFile(const std::string &filename);

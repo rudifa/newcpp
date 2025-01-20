@@ -33,6 +33,7 @@ This implementation:
 - Creates README.md with basic project information
 - Creates a simple main.cpp with a "Hello, World!" program
 - Creates a .gitignore file with common C++ ignores
+- Creeates a CMAkeLists.txt with basic configuration
 - Initializes a git repository and makes an initial commit
 - Includes basic error handling
 - Uses system() for git operations (note: this is a simple approach; for a more robust solution, you might want to use libgit2 or similar)
@@ -47,7 +48,6 @@ You could extend this by:
 
 - Adding command line options for different project templates
 - Creating more sophisticated project structures
-- Adding CMake configuration
 - Adding license file generation
 - Adding dependency management setup
 - Using a proper git library instead of system() calls
